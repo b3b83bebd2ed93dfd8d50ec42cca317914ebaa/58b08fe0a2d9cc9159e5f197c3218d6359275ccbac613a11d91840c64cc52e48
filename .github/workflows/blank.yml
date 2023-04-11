@@ -1,0 +1,51 @@
+name: Torrent Seeder
+
+on:
+  workflow_dispatch:
+    inputs:
+      magnet:
+        description: 'Magnet Link'     
+        required: true
+      log-level:
+        description: 'Log Level'  
+        type: choice
+        default: warn
+        required: true
+        options:
+          - debug
+          - info
+          - notice
+          - warn
+          - error
+
+jobs:
+  seeder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install aria2c
+        run: |
+          sudo snap install aria2c
+          sleep 15s
+          echo
+          
+      - name: Start downloading
+        run: |
+          curl -sOL https://github.com/P3TERX/aria2.conf/raw/master/dht.dat
+          curl -sOL https://github.com/P3TERX/aria2.conf/raw/master/dht6.dat
+          
+          sudo aria2c \
+            --log=- \
+            --log-level=${{ inputs.log-level }} \
+            --file-allocation=falloc \
+            --listen-port=51413 \
+            --dht-listen-port=51413 \
+            --dht-entry-point=dht.transmissionbt.com:6881 \
+            --dht-entry-point6=dht.transmissionbt.com:6881 \
+            --dht-file-path=dht.dat \
+            --dht-file-path6=dht6.dat \
+            --enable-dht=true \
+            --enable-dht6=false \
+            --async-dns=true \
+            --async-dns-server=1.0.0.1,1.1.1.1 \
+            --seed-ratio=0.0 "${{ inputs.magnet }}"
+            
