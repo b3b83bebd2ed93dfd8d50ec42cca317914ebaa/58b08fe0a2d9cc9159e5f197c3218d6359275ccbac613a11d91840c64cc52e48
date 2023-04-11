@@ -25,7 +25,7 @@ jobs:
       - name: Install aria2c
         run: |
           sudo snap install aria2c
-          sleep 15s
+          sleep 10s
           echo
           
       - name: Start downloading
