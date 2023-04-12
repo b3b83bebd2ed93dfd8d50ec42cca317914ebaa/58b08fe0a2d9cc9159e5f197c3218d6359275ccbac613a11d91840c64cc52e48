@@ -7,7 +7,7 @@ on:
         description: 'Magnet Link'     
         required: true
       trackers:
-        description: 'Torrent Trackers'     
+        description: 'Trackers List'     
         required: false
       log-level:
         description: 'Log Level'  
