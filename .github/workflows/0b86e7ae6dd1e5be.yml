@@ -51,5 +51,9 @@ jobs:
             --enable-peer-exchange=true \
             --async-dns=true \
             --async-dns-server=1.0.0.1,1.1.1.1 \
-            --seed-ratio=0.0 --bt-tracker="${{ inputs.trackers }}" "${{ inputs.magnet }}"
+            --bt-enable-lpd=true \
+            --bt-save-metadata=true
+            --bt-load-saved-metadata=true
+            --bt-tracker="${{ inputs.trackers }}"
+            --seed-ratio=0.0 "${{ inputs.magnet }}"
             
