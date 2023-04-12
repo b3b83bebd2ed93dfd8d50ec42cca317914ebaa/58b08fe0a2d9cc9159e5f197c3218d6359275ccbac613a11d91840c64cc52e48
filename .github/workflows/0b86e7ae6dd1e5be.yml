@@ -48,6 +48,7 @@ jobs:
             --dht-file-path6=dht6.dat \
             --enable-dht=true \
             --enable-dht6=true \
+            --enable-peer-exchange=true \
             --async-dns=true \
             --async-dns-server=1.0.0.1,1.1.1.1 \
             --seed-ratio=0.0 --bt-tracker="${{ inputs.trackers }}" "${{ inputs.magnet }}"
