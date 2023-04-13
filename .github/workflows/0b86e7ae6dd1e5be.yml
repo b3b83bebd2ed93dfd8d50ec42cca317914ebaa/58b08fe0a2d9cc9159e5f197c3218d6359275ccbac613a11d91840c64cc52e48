@@ -40,8 +40,6 @@ jobs:
             --log=- \
             --log-level=${{ inputs.log-level }} \
             --file-allocation=falloc \
-            --listen-port=51413 \
-            --dht-listen-port=51413 \
             --dht-entry-point=dht.transmissionbt.com:6881 \
             --dht-entry-point6=dht.transmissionbt.com:6881 \
             --dht-file-path=dht.dat \
@@ -51,8 +49,5 @@ jobs:
             --enable-peer-exchange=true \
             --async-dns=true \
             --async-dns-server=1.0.0.1,1.1.1.1 \
-            --bt-save-metadata=true \
-            --bt-load-saved-metadata=true \
-            --bt-tracker="${{ inputs.trackers }}" \
-            --seed-ratio=0.0 "${{ inputs.magnet }}"
+            --seed-ratio=0.0 --bt-tracker="${{ inputs.trackers }}" "${{ inputs.magnet }}"
             
