@@ -13,11 +13,11 @@ jobs:
     steps:
       - name: Install rtorrent
         run: |
-          sudo apt-get install rtorrent
-          sleep 10s
+          apt-get install rtorrent
+          sleep 5s
           echo
           
       - name: Start downloading
         run: |
-          sudo rtorrent "${{ inputs.magnet }}"
+         rtorrent "${{ inputs.magnet }}"
             
