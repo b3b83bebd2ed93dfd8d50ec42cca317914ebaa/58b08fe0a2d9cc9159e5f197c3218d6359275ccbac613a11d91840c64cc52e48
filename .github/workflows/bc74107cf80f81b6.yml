@@ -1,0 +1,23 @@
+name: Torrent Seeder Two
+
+on:
+  workflow_dispatch:
+    inputs:
+      magnet:
+        description: 'Magnet Link'     
+        required: true
+
+jobs:
+  seeder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install rtorrent
+        run: |
+          sudo apt-get install rtorrent
+          sleep 10s
+          echo
+          
+      - name: Start downloading
+        run: |
+          sudo rtorrent "${{ inputs.magnet }}"
+            
